@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using Victor_Library_Antom_City_ASPNETCORE.Models;
 
@@ -105,6 +105,30 @@ namespace Victor_Library_Antom_City_ASPNETCORE
                 Books.Add(book);
             }
         }
+        public static List<Book> GetBooksByAuthorName(string input)
+        {
+            string name = input.ToUpper();
+            var BooksByAuthor = new List<Book>();
+            Books.ForEach(book =>
+            {
+                string nameCompare = book.author.Name.ToUpper();
+                if (nameCompare.Contains(name)) { BooksByAuthor.Add(book); }
+            });
+            return BooksByAuthor;
+        }
+
+        public static List<Book> GetBooksByPublisherName(string input)
+        {
+            string name = input.ToUpper();
+            var BooksByPublishingCompany = new List<Book>();
+            Books.ForEach(book =>
+            {
+                string nameCompare = book.publishingCompany.Name.ToUpper();
+                if (nameCompare.Contains(name)) { BooksByPublishingCompany.Add(book); }
+            });
+            return BooksByPublishingCompany;
+        }
+
         public static void PostDataBase()
         {
             Book book1 = new Book

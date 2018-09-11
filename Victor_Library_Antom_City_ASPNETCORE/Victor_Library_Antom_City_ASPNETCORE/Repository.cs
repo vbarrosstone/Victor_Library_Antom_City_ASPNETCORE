@@ -11,6 +11,13 @@ namespace Victor_Library_Antom_City_ASPNETCORE
         public static List<Book> Books = new List<Book>();
         public static List<PublishingCompany> Publishers = new List<PublishingCompany>();
 
+        /// <summary>
+        /// Verify if the Author already exist in the Author Repository.
+        /// If doesn't exist, the method returns -1.
+        /// Else return the ID.
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
         public static int VerifyAuthorInRepository(string input)
         {
             if (Authors.Any() == false) { return -1; }
@@ -24,6 +31,10 @@ namespace Victor_Library_Antom_City_ASPNETCORE
             }
         }
 
+        /// <summary>
+        /// Post the new Author to the Repository.
+        /// </summary>
+        /// <param name="author"></param>
         public static void PostAuthorToRepository(Author author)
         {
             if (!string.IsNullOrEmpty(author.Name)) { };
@@ -36,6 +47,13 @@ namespace Victor_Library_Antom_City_ASPNETCORE
             }
         }
 
+        /// <summary>
+        /// Verify if the Publisher already exist in the Repository.
+        /// If doesn't exist, the method returns -1.
+        /// Else return the ID.
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
         public static int VerifyPublishingCompany(string input)
         {
             if (Publishers.Any() == false) { return -1; }
@@ -48,6 +66,10 @@ namespace Victor_Library_Antom_City_ASPNETCORE
                 return -1;
             }
         }
+        /// <summary>
+        /// Post the new Publisher to the Repository.
+        /// </summary>
+        /// <param name="publishingCompany"></param>
         public static void PostPublishingCompanyToRepository(PublishingCompany publishingCompany)
         {
             if (!string.IsNullOrEmpty(publishingCompany.Name)) { };
@@ -60,6 +82,13 @@ namespace Victor_Library_Antom_City_ASPNETCORE
             }
         }
 
+        /// <summary>
+        /// Verify if already exist in the Repository.
+        /// If doesn't exist, the method returns -1.
+        /// Else return the ID.
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
         public static int VerifyBookInRepository(string input)
         {
             if (Books.Any() == false) { return -1; }
@@ -72,6 +101,10 @@ namespace Victor_Library_Antom_City_ASPNETCORE
                 return -1;
             }
         }
+        /// <summary>
+        /// Post to the Repository.
+        /// </summary>
+        /// <param name="publishingCompany"></param>
         public static void PostBookToRepository(Book book)
         {
             if (!string.IsNullOrEmpty(book.Title)) { };
@@ -105,6 +138,11 @@ namespace Victor_Library_Antom_City_ASPNETCORE
                 Books.Add(book);
             }
         }
+        /// <summary>
+        /// Return to the list of all books written by the Author.
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
         public static List<Book> GetBooksByAuthorName(string input)
         {
             string name = input.ToUpper();
@@ -116,7 +154,11 @@ namespace Victor_Library_Antom_City_ASPNETCORE
             });
             return BooksByAuthor;
         }
-
+        /// <summary>
+        /// Return to the list of all books published by the company.
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
         public static List<Book> GetBooksByPublisherName(string input)
         {
             string name = input.ToUpper();
@@ -128,7 +170,9 @@ namespace Victor_Library_Antom_City_ASPNETCORE
             });
             return BooksByPublishingCompany;
         }
-
+        /// <summary>
+        /// Data base default in the repository.
+        /// </summary>
         public static void PostDataBase()
         {
             Book book1 = new Book

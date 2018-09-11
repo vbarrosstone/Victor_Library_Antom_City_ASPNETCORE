@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Victor_Library_Antom_City_ASPNETCORE.Models;
 
@@ -23,12 +23,7 @@ namespace Victor_Library_Antom_City_ASPNETCORE.Controllers
         public List<Book> GetByAuthor(string id)
         {
             string name = id;
-            var BooksByAuthor = new List<Book>();
-            foreach (var book in Repository.Books)
-            {
-                if (book.author.Name.Contains(name)) { BooksByAuthor.Add(book); }
-            }
-            return BooksByAuthor;
+            return Repository.GetBooksByAuthorName(name);
         }
 
         // GET: /<controller>/GetByPublishingCompany/name
@@ -37,12 +32,7 @@ namespace Victor_Library_Antom_City_ASPNETCORE.Controllers
         public List<Book> GetByPublishingCompany(string id)
         {
             string name = id;
-            var BooksByPublishingCompany = new List<Book>();
-            foreach (var book in Repository.Books)
-            {
-                if (book.publishingCompany.Name.Contains(name)) { BooksByPublishingCompany.Add(book); }
-            }
-            return BooksByPublishingCompany;
+            return Repository.GetBooksByPublisherName(name);
         }
 
         // POST api/<controller>

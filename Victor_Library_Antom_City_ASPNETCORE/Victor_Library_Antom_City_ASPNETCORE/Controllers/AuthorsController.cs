@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Victor_Library_Antom_City_ASPNETCORE.Models;
 
@@ -9,6 +9,7 @@ namespace Victor_Library_Antom_City_ASPNETCORE.Controllers
     [Route("[controller]")]
     public class AuthorsController : Controller
     {
+        //Consult all already posted.
         // GET: /<controller>
         [HttpGet]
         [Route("Get")]
@@ -16,7 +17,7 @@ namespace Victor_Library_Antom_City_ASPNETCORE.Controllers
         {
             return Repository.Authors;
         }
-
+        //Post news to repository.
         // POST /<controller>
         [HttpPost]
         [Route("Post")]
@@ -24,7 +25,7 @@ namespace Victor_Library_Antom_City_ASPNETCORE.Controllers
         {
             Repository.PostAuthorToRepository(author);
         }
-
+        //Update datas already posted in all repositories.
         // PUT /<controller>/5
         [HttpPut("{id}")]
         [Route("Put/{id}")]

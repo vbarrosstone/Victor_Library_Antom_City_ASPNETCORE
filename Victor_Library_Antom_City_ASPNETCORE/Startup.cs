@@ -2,8 +2,6 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
-using Victor_Library_Antom_City_ASPNETCORE.Controllers;
-using Victor_Library_Antom_City_ASPNETCORE.Models;
 
 namespace Victor_Library_Antom_City_ASPNETCORE
 {

@@ -11,6 +11,41 @@ namespace Victor_Library_Antom_City_ASPNETCORE
         public static List<Book> Books = new List<Book>();
         public static List<PublishingCompany> Publishers = new List<PublishingCompany>();
 
+
+        /// <summary>
+        /// Return to the list of all books written by the Author.
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public static List<Book> GetBooksByAuthorName(string input)
+        {
+            string name = input.ToUpper();
+            var BooksByAuthor = new List<Book>();
+            Books.ForEach(book =>
+            {
+                string nameCompare = book.author.Name.ToUpper();
+                if (nameCompare.Contains(name)) { BooksByAuthor.Add(book); }
+            });
+            return BooksByAuthor;
+        }
+
+        /// <summary>
+        /// Return to the list of all books published by the company.
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public static List<Book> GetBooksByPublisherName(string input)
+        {
+            string name = input.ToUpper();
+            var BooksByPublishingCompany = new List<Book>();
+            Books.ForEach(book =>
+            {
+                string nameCompare = book.publishingCompany.Name.ToUpper();
+                if (nameCompare.Contains(name)) { BooksByPublishingCompany.Add(book); }
+            });
+            return BooksByPublishingCompany;
+        }
+
         /// <summary>
         /// Verify if already exist in the Repository.
         /// If doesn't exist, the method returns -1.
@@ -18,7 +53,6 @@ namespace Victor_Library_Antom_City_ASPNETCORE
         /// </summary>
         /// <param name="authorName"></param>
         /// <returns></returns>
-
         public static int Check(string authorName, List<Author> list)
         {
             if (!Authors.Any()) { return -1; }
@@ -141,44 +175,24 @@ namespace Victor_Library_Antom_City_ASPNETCORE
                 Books.Add(book);
             }
         }
-
-        /// <summary>
-        /// Return to the list of all books written by the Author.
-        /// </summary>
-        /// <param name="input"></param>
-        /// <returns></returns>
-        public static List<Book> GetBooksByAuthorName(string input)
+        public static void Update(int id, Book book)
         {
-            string name = input.ToUpper();
-            var BooksByAuthor = new List<Book>();
-            Books.ForEach(book =>
-            {
-                string nameCompare = book.author.Name.ToUpper();
-                if (nameCompare.Contains(name)) { BooksByAuthor.Add(book); }
-            });
-            return BooksByAuthor;
+            Books[id - 1].Title = book.Title;
+            Authors[id - 1].Name = book.author.Name;
+            Publishers[id - 1].Name = book.publishingCompany.Name;
+        }
+        public static void Update(int id, PublishingCompany publishingCompany)
+        {
+            Publishers[id - 1].Name = publishingCompany.Name;
+        }
+        public static void Update(int id, Author author)
+        {
+            Authors[id - 1].Name = author.Name;
         }
 
-        /// <summary>
-        /// Return to the list of all books published by the company.
-        /// </summary>
-        /// <param name="input"></param>
-        /// <returns></returns>
-        public static List<Book> GetBooksByPublisherName(string input)
-        {
-            string name = input.ToUpper();
-            var BooksByPublishingCompany = new List<Book>();
-            Books.ForEach(book =>
-            {
-                string nameCompare = book.publishingCompany.Name.ToUpper();
-                if (nameCompare.Contains(name)) { BooksByPublishingCompany.Add(book); }
-            });
-            return BooksByPublishingCompany;
-        }
-
-        /// <summary>
-        /// Data base default in the repository.
-        /// </summary>
+            /// <summary>
+            /// Data base default in the repository.
+            /// </summary>
         public static void PostDataBase()
         {
             Book book1 = new Book

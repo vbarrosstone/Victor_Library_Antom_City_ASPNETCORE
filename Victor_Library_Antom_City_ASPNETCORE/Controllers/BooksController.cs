@@ -24,8 +24,7 @@ namespace Victor_Library_Antom_City_ASPNETCORE.Controllers
         [Route("GetByAuthorName/{id}")]
         public List<Book> GetByAuthorName(string id)
         {
-            string name = id;
-            return Repository.GetBooksByAuthorName(name);
+            return Repository.GetBooksByAuthorName(id);
         }
 
         //Route that bring the list of books published by the specific company.
@@ -34,8 +33,7 @@ namespace Victor_Library_Antom_City_ASPNETCORE.Controllers
         [Route("GetByPublishingCompanyName/{id}")]
         public List<Book> GetByPublishingCompanyName(string id)
         {
-            string name = id;
-            return Repository.GetBooksByPublisherName(name);
+            return Repository.GetBooksByPublisherName(id);
         }
 
         //Post news to repository.
@@ -53,9 +51,7 @@ namespace Victor_Library_Antom_City_ASPNETCORE.Controllers
         [Route("Put/{id}")]
         public void Put(int id, [FromBody] Book book)
         {
-            Repository.Books[id - 1].Title = book.Title;
-            Repository.Authors[id - 1].Name = book.author.Name;
-            Repository.Publishers[id - 1].Name = book.publishingCompany.Name;
+            Repository.Update(id, book);
         }
     }
 }

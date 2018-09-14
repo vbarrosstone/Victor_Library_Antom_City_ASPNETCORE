@@ -31,7 +31,7 @@ namespace Victor_Library_Antom_City_ASPNETCORE.Controllers
         [Route("Put/{id}")]
         public void Put(int id, [FromBody] PublishingCompany publishingCompany)
         {
-            Repository.Publishers[id - 1].Name = publishingCompany.Name;
+            Repository.Update(id, publishingCompany);
         }
     }
 }

@@ -12,30 +12,66 @@ namespace Victor_Library_Antom_City_ASPNETCORE
         public static List<PublishingCompany> Publishers = new List<PublishingCompany>();
 
         /// <summary>
-        /// Verify if the Author already exist in the Author Repository.
+        /// Verify if already exist in the Repository.
         /// If doesn't exist, the method returns -1.
         /// Else return the ID.
         /// </summary>
-        /// <param name="input"></param>
+        /// <param name="authorName"></param>
         /// <returns></returns>
-        public static int VerifyAuthor(string input)
+
+        public static int Check(string authorName, List<Author> list)
         {
             if (!Authors.Any()) { return -1; }
             else
             {
-                //var Query = 
-                //    from author in Authors
-                //    where author.Name.Equals(input)
-                //    select (int) author.Id;
-
-                foreach (Author author in Authors)
+                foreach (Author author in list)
                 {
-                    if (author.Name.Equals(input)) { return (int) author.Id; }
+                    if (author.Name.Equals(authorName)) { return (int)author.Id; }
                 }
                 return -1;
             }
         }
 
+        /// <summary>
+        /// Verify if already exist in the Repository.
+        /// If doesn't exist, the method returns -1.
+        /// Else return the ID.
+        /// </summary>
+        /// <param name="publichingCompanyName"></param>
+        /// <returns></returns>
+        public static int Check(string publichingCompanyName, List<PublishingCompany> list)
+        {
+            if (!Publishers.Any()) { return -1; }
+            else
+            {
+                foreach (PublishingCompany publisher in list)
+                {
+                    if (publisher.Name.Equals(publichingCompanyName)) { return (int)publisher.Id; }
+                }
+                return -1;
+            }
+        }
+
+        /// <summary>
+        /// Verify if already exist in the Repository.
+        /// If doesn't exist, the method returns -1.
+        /// Else return the ID.
+        /// </summary>
+        /// <param name="bookName"></param>
+        /// <returns></returns>
+        public static int Check(string bookName, List<Book> list)
+        {
+            if (!Books.Any()) { return -1; }
+            else
+            {
+                foreach (Book book in list)
+                {
+                    if (book.Title.Equals(bookName)) { return (int)book.Id; }
+                }
+                return -1;
+            }
+        }
+        
         /// <summary>
         /// Post the new Author to the Repository.
         /// </summary>
@@ -43,7 +79,7 @@ namespace Victor_Library_Antom_City_ASPNETCORE
         public static void InsertAuthor(Author author)
         {
             if (!string.IsNullOrEmpty(author.Name)) { };
-            if (VerifyAuthor(author.Name) == -1)
+            if (Check(author.Name, Authors) == -1)
             {
                 author.Id = Author.Count;
                 Author.Count++;
@@ -53,32 +89,13 @@ namespace Victor_Library_Antom_City_ASPNETCORE
         }
 
         /// <summary>
-        /// Verify if the Publisher already exist in the Repository.
-        /// If doesn't exist, the method returns -1.
-        /// Else return the ID.
-        /// </summary>
-        /// <param name="input"></param>
-        /// <returns></returns>
-        public static int VerifyPublishingCompany(string input)
-        {
-            if (!Publishers.Any()) { return -1; }
-            else
-            {
-                foreach (PublishingCompany publisher in Publishers)
-                {
-                    if (publisher.Name.Equals(input)) { return (int) publisher.Id; }
-                }
-                return -1;
-            }
-        }
-        /// <summary>
         /// Post the new Publisher to the Repository.
         /// </summary>
         /// <param name="publishingCompany"></param>
         public static void InsertPublishingCompany(PublishingCompany publishingCompany)
         {
             if (!string.IsNullOrEmpty(publishingCompany.Name)) { };
-            if (VerifyPublishingCompany(publishingCompany.Name) == -1)
+            if (Check(publishingCompany.Name, Publishers) == -1)
             {
                 publishingCompany.Id = PublishingCompany.Count;
                 PublishingCompany.Count++;
@@ -88,25 +105,6 @@ namespace Victor_Library_Antom_City_ASPNETCORE
         }
 
         /// <summary>
-        /// Verify if already exist in the Repository.
-        /// If doesn't exist, the method returns -1.
-        /// Else return the ID.
-        /// </summary>
-        /// <param name="input"></param>
-        /// <returns></returns>
-        public static int VerifyBook(string input)
-        {
-            if (!Books.Any()) { return -1; }
-            else
-            {
-                foreach (Book book in Books)
-                {
-                    if (book.Title.Equals(input)) { return (int) book.Id; }
-                }
-                return -1;
-            }
-        }
-        /// <summary>
         /// Post to the Repository.
         /// </summary>
         /// <param name="publishingCompany"></param>
@@ -114,12 +112,12 @@ namespace Victor_Library_Antom_City_ASPNETCORE
         {
             if (!string.IsNullOrEmpty(book.Title)) { };
 
-            int indexBook = VerifyBook(book.Title);
+            int indexBook = Check(book.Title, Books);
             if (indexBook == -1)
             {
                 book.Id = Book.Count;
                 Book.Count++;
-                int indexAuthor = VerifyAuthor(book.author.Name);
+                int indexAuthor = Check(book.author.Name, Authors);
                 if (indexAuthor == -1)
                 {
                     InsertAuthor(book.author);
@@ -130,7 +128,7 @@ namespace Victor_Library_Antom_City_ASPNETCORE
                     book.author.NumberOfBooks++;
                 }
 
-                int indexPublishingCompany = VerifyPublishingCompany(book.publishingCompany.Name);
+                int indexPublishingCompany = Check(book.publishingCompany.Name, Publishers);
                 if (indexPublishingCompany == -1)
                 {
                     InsertPublishingCompany(book.publishingCompany);
@@ -143,6 +141,7 @@ namespace Victor_Library_Antom_City_ASPNETCORE
                 Books.Add(book);
             }
         }
+
         /// <summary>
         /// Return to the list of all books written by the Author.
         /// </summary>
@@ -159,6 +158,7 @@ namespace Victor_Library_Antom_City_ASPNETCORE
             });
             return BooksByAuthor;
         }
+
         /// <summary>
         /// Return to the list of all books published by the company.
         /// </summary>
@@ -175,6 +175,7 @@ namespace Victor_Library_Antom_City_ASPNETCORE
             });
             return BooksByPublishingCompany;
         }
+
         /// <summary>
         /// Data base default in the repository.
         /// </summary>

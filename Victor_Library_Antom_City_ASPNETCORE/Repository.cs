@@ -76,10 +76,10 @@ namespace Victor_Library_Antom_City_ASPNETCORE
         /// Post the new Author to the Repository.
         /// </summary>
         /// <param name="author"></param>
-        public static void InsertAuthor(Author author)
+        public static void Insert(Author author, List<Author> list)
         {
             if (!string.IsNullOrEmpty(author.Name)) { };
-            if (Check(author.Name, Authors) == -1)
+            if (Check(author.Name, list) == -1)
             {
                 author.Id = Author.Count;
                 Author.Count++;
@@ -92,10 +92,10 @@ namespace Victor_Library_Antom_City_ASPNETCORE
         /// Post the new Publisher to the Repository.
         /// </summary>
         /// <param name="publishingCompany"></param>
-        public static void InsertPublishingCompany(PublishingCompany publishingCompany)
+        public static void Insert(PublishingCompany publishingCompany, List<PublishingCompany> list)
         {
             if (!string.IsNullOrEmpty(publishingCompany.Name)) { };
-            if (Check(publishingCompany.Name, Publishers) == -1)
+            if (Check(publishingCompany.Name, list) == -1)
             {
                 publishingCompany.Id = PublishingCompany.Count;
                 PublishingCompany.Count++;
@@ -108,7 +108,7 @@ namespace Victor_Library_Antom_City_ASPNETCORE
         /// Post to the Repository.
         /// </summary>
         /// <param name="publishingCompany"></param>
-        public static void InsertBook(Book book)
+        public static void Insert(Book book, List<Book> list)
         {
             if (!string.IsNullOrEmpty(book.Title)) { };
 
@@ -120,7 +120,7 @@ namespace Victor_Library_Antom_City_ASPNETCORE
                 int indexAuthor = Check(book.author.Name, Authors);
                 if (indexAuthor == -1)
                 {
-                    InsertAuthor(book.author);
+                    Insert(book.author, Authors);
                 }
                 else
                 {
@@ -131,7 +131,7 @@ namespace Victor_Library_Antom_City_ASPNETCORE
                 int indexPublishingCompany = Check(book.publishingCompany.Name, Publishers);
                 if (indexPublishingCompany == -1)
                 {
-                    InsertPublishingCompany(book.publishingCompany);
+                    Insert(book.publishingCompany, Publishers);
                 }
                 else
                 {
@@ -187,7 +187,7 @@ namespace Victor_Library_Antom_City_ASPNETCORE
                 author = new Author { Name = "Jack Welch" },
                 publishingCompany = new PublishingCompany { Name = "Harper Collins" }
             };
-            InsertBook(book1);
+            Insert(book1, Books);
 
             Book book2 = new Book
             {
@@ -195,7 +195,7 @@ namespace Victor_Library_Antom_City_ASPNETCORE
                 author = new Author { Name = "Veronica Roth" },
                 publishingCompany = book1.publishingCompany
             };
-            InsertBook(book2);
+            Insert(book2, Books);
 
             Book book3 = new Book
             {
@@ -203,7 +203,7 @@ namespace Victor_Library_Antom_City_ASPNETCORE
                 author = new Author { Name = "Agatha Christie" },
                 publishingCompany = new PublishingCompany { Name = "William Morrow & Co" }
             };
-            InsertBook(book3);
+            Insert(book3, Books);
 
             Book book4 = new Book
             {
@@ -211,7 +211,7 @@ namespace Victor_Library_Antom_City_ASPNETCORE
                 author = new Author { Name = "Agatha Christie" },
                 publishingCompany = new PublishingCompany { Name = "William Morrow & Co" }
             };
-            InsertBook(book4);
+            Insert(book4, Books);
 
             Book book5 = new Book
             {
@@ -219,7 +219,7 @@ namespace Victor_Library_Antom_City_ASPNETCORE
                 author = new Author { Name = "Agatha Christie" },
                 publishingCompany = new PublishingCompany { Name = "Turtleback Books" }
             };
-            InsertBook(book5);
+            Insert(book5, Books);
 
             Book book6 = new Book
             {
@@ -227,7 +227,7 @@ namespace Victor_Library_Antom_City_ASPNETCORE
                 author = new Author { Name = "Jocko Willink" },
                 publishingCompany = new PublishingCompany { Name = "St. Martin's Press" }
             };
-            InsertBook(book6);
+            Insert(book6, Books);
         }
     }
 }

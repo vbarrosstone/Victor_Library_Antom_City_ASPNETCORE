@@ -44,7 +44,7 @@ namespace Victor_Library_Antom_City_ASPNETCORE.Controllers
         [Route("Post")]
         public void Post([FromBody]Book book)
         {
-            Repository.InsertBook(book);
+            Repository.Insert(book, Repository.Books);
         }
 
         //Update datas already posted in all repositories.

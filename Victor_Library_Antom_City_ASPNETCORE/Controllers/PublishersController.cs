@@ -23,7 +23,7 @@ namespace Victor_Library_Antom_City_ASPNETCORE.Controllers
         [Route("Post")]
         public void Post([FromBody]PublishingCompany publishingCompany)
         {
-            Repository.InsertPublishingCompany(publishingCompany);
+            Repository.Insert(publishingCompany, Repository.Publishers);
         }
         //Update datas already posted in all repositories.
         // PUT /<controller>/5

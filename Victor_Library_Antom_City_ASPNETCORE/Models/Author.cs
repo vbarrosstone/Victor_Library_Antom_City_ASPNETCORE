@@ -8,8 +8,8 @@ namespace Victor_Library_Antom_City_ASPNETCORE.Models
     public class Author
     {
         public string Name { get; set; }
-        public int Id { get; set; }
-        public static int Count = 1;
-        public int NumberOfBooks = 0;
+        public uint Id { get; set; }
+        public static uint Count = 1;
+        public uint NumberOfBooks = 0;
     }
 }

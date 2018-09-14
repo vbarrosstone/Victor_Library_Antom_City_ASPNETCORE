@@ -11,7 +11,7 @@ namespace Victor_Library_Antom_City_ASPNETCORE.Controllers
     {
         //Consult all already posted.
         // GET: /<controller>
-        [HttpGet]
+        //[HttpGet]
         [Route("Get")]
         public List<PublishingCompany> Get()
         {
@@ -19,15 +19,15 @@ namespace Victor_Library_Antom_City_ASPNETCORE.Controllers
         }
         //Post news to repository.
         // POST /<controller>
-        [HttpPost]
+        //[HttpPost]
         [Route("Post")]
         public void Post([FromBody]PublishingCompany publishingCompany)
         {
-            Repository.PostPublishingCompanyToRepository(publishingCompany);
+            Repository.InsertPublishingCompany(publishingCompany);
         }
         //Update datas already posted in all repositories.
         // PUT /<controller>/5
-        [HttpPut("{id}")]
+        //[HttpPut("{id}")]
         [Route("Put/{id}")]
         public void Put(int id, [FromBody] PublishingCompany publishingCompany)
         {

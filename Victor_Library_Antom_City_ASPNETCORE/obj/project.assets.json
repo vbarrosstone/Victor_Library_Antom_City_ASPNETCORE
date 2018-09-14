@@ -11506,11 +11506,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\vbarros\\source\\repos\\Victor_Library_Antom_City_ASPNETCORE\\Victor_Library_Antom_City_ASPNETCORE\\Victor_Library_Antom_City_ASPNETCORE.csproj",
+      "projectUniqueName": "C:\\Users\\vbarros\\source\\repos\\Victor_Library_Antom_City_ASPNETCORE\\Victor_Library_Antom_City_ASPNETCORE\\Victor_Library_Antom_City_ASPNETCORE\\Victor_Library_Antom_City_ASPNETCORE.csproj",
       "projectName": "Victor_Library_Antom_City_ASPNETCORE",
-      "projectPath": "C:\\Users\\vbarros\\source\\repos\\Victor_Library_Antom_City_ASPNETCORE\\Victor_Library_Antom_City_ASPNETCORE\\Victor_Library_Antom_City_ASPNETCORE.csproj",
+      "projectPath": "C:\\Users\\vbarros\\source\\repos\\Victor_Library_Antom_City_ASPNETCORE\\Victor_Library_Antom_City_ASPNETCORE\\Victor_Library_Antom_City_ASPNETCORE\\Victor_Library_Antom_City_ASPNETCORE.csproj",
       "packagesPath": "C:\\Users\\vbarros\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\vbarros\\source\\repos\\Victor_Library_Antom_City_ASPNETCORE\\Victor_Library_Antom_City_ASPNETCORE\\obj\\",
+      "outputPath": "C:\\Users\\vbarros\\source\\repos\\Victor_Library_Antom_City_ASPNETCORE\\Victor_Library_Antom_City_ASPNETCORE\\Victor_Library_Antom_City_ASPNETCORE\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

@@ -18,14 +18,19 @@ namespace Victor_Library_Antom_City_ASPNETCORE
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        public static int VerifyAuthorInRepository(string input)
+        public static int VerifyAuthor(string input)
         {
-            if (Authors.Any() == false) { return -1; }
+            if (!Authors.Any()) { return -1; }
             else
             {
+                //var Query = 
+                //    from author in Authors
+                //    where author.Name.Equals(input)
+                //    select (int) author.Id;
+
                 foreach (Author author in Authors)
                 {
-                    if (author.Name.Equals(input)) { return author.Id; }
+                    if (author.Name.Equals(input)) { return (int) author.Id; }
                 }
                 return -1;
             }
@@ -35,10 +40,10 @@ namespace Victor_Library_Antom_City_ASPNETCORE
         /// Post the new Author to the Repository.
         /// </summary>
         /// <param name="author"></param>
-        public static void PostAuthorToRepository(Author author)
+        public static void InsertAuthor(Author author)
         {
             if (!string.IsNullOrEmpty(author.Name)) { };
-            if (VerifyAuthorInRepository(author.Name) == -1)
+            if (VerifyAuthor(author.Name) == -1)
             {
                 author.Id = Author.Count;
                 Author.Count++;
@@ -56,12 +61,12 @@ namespace Victor_Library_Antom_City_ASPNETCORE
         /// <returns></returns>
         public static int VerifyPublishingCompany(string input)
         {
-            if (Publishers.Any() == false) { return -1; }
+            if (!Publishers.Any()) { return -1; }
             else
             {
                 foreach (PublishingCompany publisher in Publishers)
                 {
-                    if (publisher.Name.Equals(input)) { return publisher.Id; }
+                    if (publisher.Name.Equals(input)) { return (int) publisher.Id; }
                 }
                 return -1;
             }
@@ -70,7 +75,7 @@ namespace Victor_Library_Antom_City_ASPNETCORE
         /// Post the new Publisher to the Repository.
         /// </summary>
         /// <param name="publishingCompany"></param>
-        public static void PostPublishingCompanyToRepository(PublishingCompany publishingCompany)
+        public static void InsertPublishingCompany(PublishingCompany publishingCompany)
         {
             if (!string.IsNullOrEmpty(publishingCompany.Name)) { };
             if (VerifyPublishingCompany(publishingCompany.Name) == -1)
@@ -89,14 +94,14 @@ namespace Victor_Library_Antom_City_ASPNETCORE
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        public static int VerifyBookInRepository(string input)
+        public static int VerifyBook(string input)
         {
-            if (Books.Any() == false) { return -1; }
+            if (!Books.Any()) { return -1; }
             else
             {
                 foreach (Book book in Books)
                 {
-                    if (book.Title.Equals(input)) { return book.Id; }
+                    if (book.Title.Equals(input)) { return (int) book.Id; }
                 }
                 return -1;
             }
@@ -105,19 +110,19 @@ namespace Victor_Library_Antom_City_ASPNETCORE
         /// Post to the Repository.
         /// </summary>
         /// <param name="publishingCompany"></param>
-        public static void PostBookToRepository(Book book)
+        public static void InsertBook(Book book)
         {
             if (!string.IsNullOrEmpty(book.Title)) { };
 
-            int indexBook = VerifyBookInRepository(book.Title);
+            int indexBook = VerifyBook(book.Title);
             if (indexBook == -1)
             {
                 book.Id = Book.Count;
                 Book.Count++;
-                int indexAuthor = VerifyAuthorInRepository(book.author.Name);
+                int indexAuthor = VerifyAuthor(book.author.Name);
                 if (indexAuthor == -1)
                 {
-                    PostAuthorToRepository(book.author);
+                    InsertAuthor(book.author);
                 }
                 else
                 {
@@ -128,7 +133,7 @@ namespace Victor_Library_Antom_City_ASPNETCORE
                 int indexPublishingCompany = VerifyPublishingCompany(book.publishingCompany.Name);
                 if (indexPublishingCompany == -1)
                 {
-                    PostPublishingCompanyToRepository(book.publishingCompany);
+                    InsertPublishingCompany(book.publishingCompany);
                 }
                 else
                 {
@@ -181,7 +186,7 @@ namespace Victor_Library_Antom_City_ASPNETCORE
                 author = new Author { Name = "Jack Welch" },
                 publishingCompany = new PublishingCompany { Name = "Harper Collins" }
             };
-            PostBookToRepository(book1);
+            InsertBook(book1);
 
             Book book2 = new Book
             {
@@ -189,7 +194,7 @@ namespace Victor_Library_Antom_City_ASPNETCORE
                 author = new Author { Name = "Veronica Roth" },
                 publishingCompany = book1.publishingCompany
             };
-            PostBookToRepository(book2);
+            InsertBook(book2);
 
             Book book3 = new Book
             {
@@ -197,7 +202,7 @@ namespace Victor_Library_Antom_City_ASPNETCORE
                 author = new Author { Name = "Agatha Christie" },
                 publishingCompany = new PublishingCompany { Name = "William Morrow & Co" }
             };
-            PostBookToRepository(book3);
+            InsertBook(book3);
 
             Book book4 = new Book
             {
@@ -205,7 +210,7 @@ namespace Victor_Library_Antom_City_ASPNETCORE
                 author = new Author { Name = "Agatha Christie" },
                 publishingCompany = new PublishingCompany { Name = "William Morrow & Co" }
             };
-            PostBookToRepository(book4);
+            InsertBook(book4);
 
             Book book5 = new Book
             {
@@ -213,7 +218,7 @@ namespace Victor_Library_Antom_City_ASPNETCORE
                 author = new Author { Name = "Agatha Christie" },
                 publishingCompany = new PublishingCompany { Name = "Turtleback Books" }
             };
-            PostBookToRepository(book5);
+            InsertBook(book5);
 
             Book book6 = new Book
             {
@@ -221,7 +226,7 @@ namespace Victor_Library_Antom_City_ASPNETCORE
                 author = new Author { Name = "Jocko Willink" },
                 publishingCompany = new PublishingCompany { Name = "St. Martin's Press" }
             };
-            PostBookToRepository(book6);
+            InsertBook(book6);
         }
     }
 }

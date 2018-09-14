@@ -11,7 +11,7 @@ namespace Victor_Library_Antom_City_ASPNETCORE.Controllers
     {
         //Consult all already posted.
         // GET: /<controller>
-        [HttpGet]
+        //[HttpGet]
         [Route("Get")]
         public List<Book> Get()
         {
@@ -20,9 +20,9 @@ namespace Victor_Library_Antom_City_ASPNETCORE.Controllers
 
         //Route that bring the list of books written by the specific Author.
         // GET: /<controller>/GetByAuthor/name
-        [HttpGet]
-        [Route("GetByAuthor/{id}")]
-        public List<Book> GetByAuthor(string id)
+        //[HttpGet]
+        [Route("GetByAuthorName/{id}")]
+        public List<Book> GetByAuthorName(string id)
         {
             string name = id;
             return Repository.GetBooksByAuthorName(name);
@@ -30,9 +30,9 @@ namespace Victor_Library_Antom_City_ASPNETCORE.Controllers
 
         //Route that bring the list of books published by the specific company.
         // GET: /<controller>/GetByPublishingCompany/name
-        [HttpGet]
-        [Route("GetByPublishingCompany/{id}")]
-        public List<Book> GetByPublishingCompany(string id)
+        //[HttpGet]
+        [Route("GetByPublishingCompanyName/{id}")]
+        public List<Book> GetByPublishingCompanyName(string id)
         {
             string name = id;
             return Repository.GetBooksByPublisherName(name);
@@ -40,16 +40,16 @@ namespace Victor_Library_Antom_City_ASPNETCORE.Controllers
 
         //Post news to repository.
         // POST api/<controller>
-        [HttpPost]
+        //[HttpPost]
         [Route("Post")]
         public void Post([FromBody]Book book)
         {
-            Repository.PostBookToRepository(book);
+            Repository.InsertBook(book);
         }
 
         //Update datas already posted in all repositories.
         // PUT /<controller>/5
-        [HttpPut("{id}")]
+        //[HttpPut("{id}")]
         [Route("Put/{id}")]
         public void Put(int id, [FromBody] Book book)
         {
